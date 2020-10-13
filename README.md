@@ -1,16 +1,21 @@
-# list_user_bloc
+# To Do list
 
-A new Flutter project.
+Um projeto de lista de atividades usando o padrão Bloc Patters
 
-## Getting Started
+### Projeto Flutter
 
-This project is a starting point for a Flutter application.
+Este é um projeto construído com Flutter, então será necessário configurar seu ambiente. 
 
-A few resources to get you started if this is your first Flutter project:
+- [Get Started Flutter](https://flutter.dev/docs/get-started/install)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### Baixando o To Do
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Para baixar este projeto, basta ter o git instalado em sua maquina, e usar o comando **git clone https://github.com/Weliton-Sousa/To_Do.git**
+
+- Ou clicando em **Code** -> **Download zip**
+
+### Iniciar o projeto
+
+Para rodar este projeto, basta dar os seguintes comandos:
+- flutter pub get
+- F5 no Visual Studio Code, ou o botão de "Play" do Android Studio
