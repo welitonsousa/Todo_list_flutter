@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:list_user_bloc/data/data.dart';
-import 'package:list_user_bloc/pages/list%20conteudo/list_conteudo_user.dart';
+import 'package:list_user_bloc/pages/list%20conteudo/list_conteudo.dart';
 import 'package:list_user_bloc/pages/list%20tarefas/list_taredas_bloc.dart';
 import 'package:list_user_bloc/pages/list%20tarefas/widget%20tarefas/menu.dart';
 import 'package:list_user_bloc/widgets/dialog.dart';
