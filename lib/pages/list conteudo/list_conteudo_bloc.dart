@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:list_user_bloc/bloc/generic_bloc.dart';
 import 'package:list_user_bloc/data/data.dart';
-import 'package:list_user_bloc/pages/list%20tarefas/list_taredas_bloc.dart';
+import 'package:list_user_bloc/pages/list%20tarefas/list_tarefas_bloc.dart';
 
 class ConteudoBloc extends GenericBloc<List<Conteudo>> {
   void addConteudo({@required String conteudo, @required String idTarefa}) {
@@ -9,6 +9,7 @@ class ConteudoBloc extends GenericBloc<List<Conteudo>> {
     tarefas[indexUser].conteudo.add(Conteudo(conteudoName: conteudo));
     add(tarefas[indexUser].conteudo);
     TarefasBloc().salvarTarefas();
+    TarefasBloc().getTarefas();
   }
 
   void deleteConteudo({@required String idConteudo, String idTarefa}) {
@@ -18,6 +19,7 @@ class ConteudoBloc extends GenericBloc<List<Conteudo>> {
     tarefas[indexUser].conteudo.removeAt(indexDetalhe);
     add(tarefas[indexUser].conteudo);
     TarefasBloc().salvarTarefas();
+    TarefasBloc().getTarefas();
   }
 
   void editConteudo(
@@ -28,10 +30,12 @@ class ConteudoBloc extends GenericBloc<List<Conteudo>> {
     int indexDetalhe =
         _indexConteudo(idTarefa: idTarefa, idConteudo: idConteudo);
     int indexUser = _indexTarefa(idTarefa: idTarefa);
+
     tarefas[indexUser].conteudo[indexDetalhe].conteudoName = editDetalhe;
     tarefas[indexUser].conteudo[indexDetalhe].checked = checked;
     add(tarefas[indexUser].conteudo);
     TarefasBloc().salvarTarefas();
+    TarefasBloc().getTarefas();
   }
 
   int _indexTarefa({@required String idTarefa}) {
@@ -40,8 +44,9 @@ class ConteudoBloc extends GenericBloc<List<Conteudo>> {
 
   _indexConteudo({@required String idTarefa, @required String idConteudo}) {
     int indexUser = _indexTarefa(idTarefa: idTarefa);
-    return tarefas[indexUser]
+    var a = tarefas[indexUser]
         .conteudo
         .indexWhere((element) => element.idConteudo == idConteudo);
+    return a;
   }
 }

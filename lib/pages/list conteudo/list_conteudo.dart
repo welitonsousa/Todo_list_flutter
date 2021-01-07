@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:list_user_bloc/data/data.dart';
 import 'package:list_user_bloc/pages/list%20conteudo/widget%20list%20conteudo/dailog_add.dart';
 import 'package:list_user_bloc/pages/list%20conteudo/widget%20list%20conteudo/menu.dart';
+
 import 'list_conteudo_bloc.dart';
 
 class DetalhesList extends StatefulWidget {
@@ -20,7 +21,8 @@ class _DetalhesListState extends State<DetalhesList> {
     controllerConteudoBloc.add(widget.tarefa.conteudo);
     super.initState();
   }
-@override
+
+  @override
   void dispose() {
     controllerConteudoBloc.dispose();
     super.dispose();
@@ -70,7 +72,6 @@ class _DetalhesListState extends State<DetalhesList> {
                     idTarefa: widget.tarefa.uuid,
                     controller: controllerConteudo,
                     context: context,
-                    
                     controllerBloc: controllerConteudoBloc);
               },
             );

@@ -16,7 +16,7 @@ editConteudo({
   return showInfo(
     context: context,
     label: 'Editar detalhe',
-    content: textFormField(controller: controller),
+    content: Input.textFormField(controller: controller),
     textOK: 'Confirmar',
     conformAction: () {
       if (controller.text.trim().isNotEmpty) {

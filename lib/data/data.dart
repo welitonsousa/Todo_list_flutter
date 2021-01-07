@@ -1,9 +1,11 @@
+import 'package:flutter/cupertino.dart';
+
 class Tarefa {
   String nome;
   String uuid;
   List<Conteudo> conteudo;
 
-  Tarefa({this.nome, this.conteudo}) {
+  Tarefa({@required this.nome}) {
     this.conteudo = [];
     this.uuid = '${DateTime.now().millisecondsSinceEpoch}';
   }
@@ -40,7 +42,9 @@ class Conteudo {
   String conteudoName;
   String idConteudo;
   bool checked;
-  Conteudo({this.conteudoName, this.checked = false}) {
+  
+  Conteudo({this.conteudoName}) {
+    this.checked = false;
     this.idConteudo = '${DateTime.now().millisecondsSinceEpoch}';
   }
   toJson() {

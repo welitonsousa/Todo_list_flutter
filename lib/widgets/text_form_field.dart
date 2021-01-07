@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
-textFormField({TextEditingController controller}) {
-  return TextFormField(
-    autofocus: true,
-    controller: controller,
-  );
+class Input {
+  static Widget textFormField({TextEditingController controller}) {
+    return TextFormField(
+      autofocus: true,
+      controller: controller,
+    );
+  }
 }

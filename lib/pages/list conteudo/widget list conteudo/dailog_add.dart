@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:list_user_bloc/widgets/dialog.dart';
 import 'package:list_user_bloc/widgets/text_form_field.dart';
+
 import '../list_conteudo_bloc.dart';
 
 Widget iconAddConteudo({
@@ -16,7 +17,7 @@ Widget iconAddConteudo({
       showInfo(
         context: context,
         label: 'Add detalhe',
-        content: textFormField(controller: controller),
+        content: Input.textFormField(controller: controller),
         textOK: 'Confirmar',
         conformAction: () {
           if (controller.text.trim().isNotEmpty) {

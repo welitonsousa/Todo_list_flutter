@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:list_user_bloc/data/data.dart';
 import 'package:list_user_bloc/pages/list%20conteudo/list_conteudo.dart';
-import 'package:list_user_bloc/pages/list%20tarefas/list_taredas_bloc.dart';
+import 'package:list_user_bloc/pages/list%20tarefas/list_tarefas_bloc.dart';
 import 'package:list_user_bloc/pages/list%20tarefas/widget%20tarefas/menu.dart';
 import 'package:list_user_bloc/widgets/dialog.dart';
 import 'package:list_user_bloc/widgets/text_form_field.dart';
 
-class ListTarefas extends StatelessWidget {
+class ListTarefas extends StatefulWidget {
+  @override
+  _ListTarefasState createState() => _ListTarefasState();
+}
+
+class _ListTarefasState extends State<ListTarefas> {
   final controller = TextEditingController();
+
   final TarefasBloc controllerBloc = TarefasBloc();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text('Tarefas'),
         actions: [
           IconButton(
             icon: Icon(Icons.add),
@@ -30,11 +37,10 @@ class ListTarefas extends StatelessWidget {
                       Navigator.pop(context);
                     }
                   },
-                  content: textFormField(controller: controllerAddTarefa));
+                  content: Input.textFormField(controller: controllerAddTarefa));
             },
           )
         ],
-        title: Text('Tarefas'),
       ),
       body: _body(),
     );

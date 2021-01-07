@@ -6,9 +6,8 @@ import 'package:list_user_bloc/data/data.dart';
 import 'package:list_user_bloc/utils/prefs.dart';
 
 List<Tarefa> tarefas = [];
-var a = 'asd';
 class TarefasBloc extends GenericBloc<List<Tarefa>> {
-  getTarefas() async {
+  void getTarefas() async {
     
     String _tarefas = await Prefs.getString('tarefas');
     if (_tarefas.isNotEmpty) {
@@ -18,29 +17,31 @@ class TarefasBloc extends GenericBloc<List<Tarefa>> {
     controller.add(tarefas);
   }
 
-  postTarefa(String text) {
+  void postTarefa(String text) {
     tarefas.add(Tarefa(nome: text));
     salvarTarefas();
     getTarefas();
   }
 
-  deleteTarefa({@required String idTarefa}) {
+  void deleteTarefa({@required String idTarefa}) {
     int indexTarefa = _indexTarefa(idTarefa: idTarefa);
     tarefas.removeAt(indexTarefa);
     salvarTarefas();
     controller.add(tarefas);
+    getTarefas();
   }
 
-  editTarefa({@required String idTarefa, @required String name}) {
+  void editTarefa({@required String idTarefa, @required String name}) {
     int indexTarefa = _indexTarefa(idTarefa: idTarefa);
     tarefas[indexTarefa].nome = name;
     salvarTarefas();
     controller.add(tarefas);
+    getTarefas();
   }
 
-  salvarTarefas() {
+  void salvarTarefas() async {
     List listTarefasJson = tarefas.map((e) => e.toJson()).toList();
-    Prefs.setString('tarefas', json.encode(listTarefasJson));
+    await Prefs.setString('tarefas', json.encode(listTarefasJson));
   }
 
   int _indexTarefa({@required String idTarefa}) {

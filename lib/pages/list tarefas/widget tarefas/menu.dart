@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:list_user_bloc/data/data.dart';
 import 'package:list_user_bloc/pages/list%20conteudo/widget%20list%20conteudo/menu.dart';
-import 'package:list_user_bloc/pages/list%20tarefas/list_taredas_bloc.dart';
+import 'package:list_user_bloc/pages/list%20tarefas/list_tarefas_bloc.dart';
 import 'package:list_user_bloc/widgets/dialog.dart';
 import 'package:list_user_bloc/widgets/menu.dart';
 import 'package:list_user_bloc/widgets/text_form_field.dart';
@@ -21,7 +21,7 @@ menuTarefas({
           showInfo(
             context: context,
             label: 'Editar tarefa',
-            content: textFormField(controller: controller),
+            content: Input.textFormField(controller: controller),
             textOK: 'Confirmar',
             conformAction: () {
               if (controller.text.trim().isNotEmpty) {
