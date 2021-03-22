@@ -75,6 +75,7 @@ class _ListTarefasState extends State<ListTarefas> {
                     ),
                   ),
                 );
+                await controllerBloc.getTarefas();
               },
               title: Text(snapshot.data[index].nome),
               onLongPress: () {
