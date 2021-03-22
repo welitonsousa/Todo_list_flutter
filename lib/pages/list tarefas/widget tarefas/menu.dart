@@ -12,6 +12,14 @@ menuTarefas({
   TarefasBloc controllerBloc,
   TextEditingController controller,
 }) {
+  void _confirmAction() {
+    if (controller.text.trim().isNotEmpty) {
+      controllerBloc.editTarefa(
+          idTarefa: tarefa.uuid, name: controller.text.trim());
+      controller.clear();
+      Navigator.pop(context);
+    }
+  }
 
   Menu().showOptions(context, 1, children: [
     containerBox(
@@ -21,15 +29,14 @@ menuTarefas({
           showInfo(
             context: context,
             label: 'Editar tarefa',
-            content: Input.textFormField(controller: controller),
+            content: Input.textFormField(
+                controller: controller,
+                onEditingComplete: () {
+                  _confirmAction();
+                }),
             textOK: 'Confirmar',
-            conformAction: () {
-              if (controller.text.trim().isNotEmpty) {
-                controllerBloc.editTarefa(
-                    idTarefa: tarefa.uuid, name: controller.text.trim());
-                controller.clear();
-                Navigator.pop(context);
-              }
+            confirmAction: () {
+              _confirmAction();
             },
           );
         }),

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:list_user_bloc/data/data.dart';
 import 'package:list_user_bloc/widgets/dialog.dart';
@@ -13,21 +12,29 @@ editConteudo({
   String idUser,
   ConteudoBloc controllerBloc,
 }) {
+  void _confirm() {
+    if (controller.text.trim().isNotEmpty) {
+      controllerBloc.editConteudo(
+          checked: conteudo.checked,
+          idConteudo: conteudo.idConteudo,
+          editDetalhe: controller.text.trim(),
+          idTarefa: idUser);
+      controller.clear();
+      Navigator.pop(context);
+    }
+  }
+
   return showInfo(
     context: context,
     label: 'Editar detalhe',
-    content: Input.textFormField(controller: controller),
+    content: Input.textFormField(
+        controller: controller,
+        onEditingComplete: () {
+          _confirm();
+        }),
     textOK: 'Confirmar',
-    conformAction: () {
-      if (controller.text.trim().isNotEmpty) {
-        controllerBloc.editConteudo(
-            checked: conteudo.checked,
-            idConteudo: conteudo.idConteudo,
-            editDetalhe: controller.text.trim(),
-            idTarefa: idUser);
-        controller.clear();
-        Navigator.pop(context);
-      }
+    confirmAction: () {
+      _confirm();
     },
   );
 }

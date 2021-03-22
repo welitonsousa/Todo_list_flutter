@@ -8,7 +8,7 @@ Future<bool> showInfo({
   String textCancel,
   String textOK = 'OK',
   Function cancelAction,
-  Function conformAction,
+  Function confirmAction,
 }) {
   return showDialog(
       context: context,
@@ -20,7 +20,7 @@ Future<bool> showInfo({
             content: content,
             actions: <Widget>[
               textCancel != null
-                  ? FlatButton(
+                  ? TextButton(
                       child: Text(
                         '$textCancel',
                         style: TextStyle(color: colorMain),
@@ -30,14 +30,14 @@ Future<bool> showInfo({
                         if (cancelAction != null) cancelAction();
                       })
                   : Container(),
-              FlatButton(
+              TextButton(
                   child: Text(
                     '$textOK',
                     style: TextStyle(color: colorMain),
                   ),
                   onPressed: () {
-                    if (conformAction != null)
-                      conformAction();
+                    if (confirmAction != null)
+                      confirmAction();
                     else {
                       Navigator.pop(context);
                     }

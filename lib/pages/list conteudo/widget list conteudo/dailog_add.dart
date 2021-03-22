@@ -10,22 +10,30 @@ Widget iconAddConteudo({
   ConteudoBloc controllerBloc,
 }) {
   TextEditingController controller = TextEditingController();
-  
+
+  void _confirm() {
+    if (controller.text.trim().isNotEmpty) {
+      controllerBloc.addConteudo(
+          conteudo: controller.text.trim(), idTarefa: idTarefa);
+      controller.clear();
+      Navigator.pop(context);
+    }
+  }
+
   return IconButton(
     icon: Icon(Icons.add),
     onPressed: () {
       showInfo(
         context: context,
         label: 'Add detalhe',
-        content: Input.textFormField(controller: controller),
+        content: Input.textFormField(
+            controller: controller,
+            onEditingComplete: () {
+              _confirm();
+            }),
         textOK: 'Confirmar',
-        conformAction: () {
-          if (controller.text.trim().isNotEmpty) {
-            controllerBloc.addConteudo(
-                conteudo: controller.text.trim(), idTarefa: idTarefa);
-            controller.clear();
-            Navigator.pop(context);
-          }
+        confirmAction: () {
+          _confirm();
         },
       );
     },

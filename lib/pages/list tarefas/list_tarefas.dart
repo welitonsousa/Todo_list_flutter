@@ -25,25 +25,36 @@ class _ListTarefasState extends State<ListTarefas> {
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () {
-              TextEditingController controllerAddTarefa = TextEditingController();
+              TextEditingController controllerAddTarefa =
+                  TextEditingController();
               showInfo(
-                  context: context,
-                  label: 'Adicionar Tarefa',
-                  textOK: 'Confirmar',
-                  conformAction: () {
-                    if (controllerAddTarefa.text.trim().isNotEmpty) {
-                      controllerBloc.postTarefa(controllerAddTarefa.text.trim());
-                      controllerAddTarefa.clear();
-                      Navigator.pop(context);
-                    }
+                context: context,
+                label: 'Adicionar Tarefa',
+                textOK: 'Confirmar',
+                confirmAction: () {
+                  confirmAction(controllerAddTarefa);
+                },
+                content: Input.textFormField(
+                  controller: controllerAddTarefa,
+                  onEditingComplete: () {
+                    confirmAction(controllerAddTarefa);
                   },
-                  content: Input.textFormField(controller: controllerAddTarefa));
+                ),
+              );
             },
           )
         ],
       ),
       body: _body(),
     );
+  }
+
+  void confirmAction(TextEditingController controllerAddTarefa) {
+    if (controllerAddTarefa.text.trim().isNotEmpty) {
+      controllerBloc.postTarefa(controllerAddTarefa.text.trim());
+      controllerAddTarefa.clear();
+      Navigator.pop(context);
+    }
   }
 
   _body() {
@@ -66,9 +77,13 @@ class _ListTarefasState extends State<ListTarefas> {
                 );
               },
               title: Text(snapshot.data[index].nome),
-              onLongPress: (){
+              onLongPress: () {
                 controller.text = snapshot.data[index].nome;
-                menuTarefas(context: context, tarefa: snapshot.data[index], controllerBloc: controllerBloc, controller: controller);
+                menuTarefas(
+                    context: context,
+                    tarefa: snapshot.data[index],
+                    controllerBloc: controllerBloc,
+                    controller: controller);
               },
             );
           },
